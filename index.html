@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
+    <title>Sample Map</title>
+
+    <style>
+        html,
+        body,
+        #viewDiv {
+            padding: 0;
+            margin: 0;
+            height: 100%;
+            width: 100%;
+        }
+        
+    </style>
+
+    <link rel="stylesheet" href="https://js.arcgis.com/4.16/esri/themes/light/main.css" />
+    <script src="https://js.arcgis.com/4.16/"></script>
+
+    <script>
+        require([
+            "esri/Map",
+            "esri/views/SceneView",
+            "esri/layers/GeoJSONLayer",
+            "esri/layers/SceneLayer", "esri/layers/GraphicsLayer", "esri/Graphic", "esri/request"
+        ], function(Map, SceneView, GeoJSONLayer, SceneLayer,
+            GraphicsLayer, Graphic, esriRequest) {
+            var createGraphic = function(data) {
+                return new Graphic({
+                    geometry: data,
+                    symbol: data.symbol,
+                    attributes: data,
+                    popupTemplate: data.popupTemplate
+                });
+            };
+
+// khai báo
+            const nen = new GeoJSONLayer({
+                url: "./nen.geojson"
+            });
+            const tang_1 = new GeoJSONLayer({
+              url: "./tang_1.geojson"
+            });
+            const tang_2_truoc = new GeoJSONLayer({
+              url: "./tang_2_truoc.geojson"
+            });
+            const tang_2_sau = new GeoJSONLayer({
+              url: "./tang_2_sau.geojson"
+            });
+            const logo = new GeoJSONLayer({
+              url: "./logo.geojson"
+            });
+            const mai_che_1 = new GeoJSONLayer({
+              url: "./mai_che_1.geojson"
+            });
+            const mai_che_2 = new GeoJSONLayer({
+              url: "./mai_che_2.geojson"
+            });
+            const tuong_1 = new GeoJSONLayer({
+              url: "./tuong_1.geojson"
+            });
+            const tuong_2 = new GeoJSONLayer({
+              url: "./tuong_2.geojson"
+            });
+            const tuong_3 = new GeoJSONLayer({
+              url: "./tuong_3.geojson"
+            });
+            const tuong_4 = new GeoJSONLayer({
+              url: "./tuong_4.geojson"
+            });
+            const tuong_5 = new GeoJSONLayer({
+              url: "./tuong_5.geojson"
+            });
+            const tuong_6 = new GeoJSONLayer({
+              url: "./tuong_6.geojson"
+            });
+            const tuong_7 = new GeoJSONLayer({
+              url: "./tuong_7.geojson"
+            });
+            const san_thuong_1 = new GeoJSONLayer({
+              url: "./san_thuong_1.geojson"
+            });
+            const san_thuong_2 = new GeoJSONLayer({
+              url: "./san_thuong_2.geojson"
+            });
+            const cot_1 = new GeoJSONLayer({
+              url: "./cot_1.geojson"
+            });
+            const ten_1 = new GeoJSONLayer({
+              url: "./ten_1.geojson"
+            });
+            const ten_2 = new GeoJSONLayer({
+              url: "./ten_2.geojson"
+            });
+            const ten_3 = new GeoJSONLayer({
+              url: "./ten_3.geojson"
+            });
+            const banner = new GeoJSONLayer({
+              url: "./banner.geojson"
+            });
+            const kinh_1 = new GeoJSONLayer({
+              url: "./kinh_1.geojson"
+            });
+            const kinh_2 = new GeoJSONLayer({
+              url: "./kinh_2.geojson"
+            });
+            const kinh_3 = new GeoJSONLayer({
+              url: "./kinh_3.geojson"
+            });
+            const kinh_4 = new GeoJSONLayer({
+              url: "./kinh_4.geojson"
+            });
+            const kinh_5 = new GeoJSONLayer({
+              url: "./kinh_5.geojson"
+            });
+            const khung_kinh_1 = new GeoJSONLayer({
+              url: "./khung_kinh_1.geojson"
+            });
+            const khung_kinh_2 = new GeoJSONLayer({
+              url: "./khung_kinh_2.geojson"
+            });
+            const khung_kinh_3 = new GeoJSONLayer({
+              url: "./khung_kinh_3.geojson"
+            });
+            const khung_kinh_4 = new GeoJSONLayer({
+              url: "./khung_kinh_4.geojson"
+            });
+            const khung_kinh_5 = new GeoJSONLayer({
+              url: "./khung_kinh_5.geojson"
+            });
+            const khung_kinh_6 = new GeoJSONLayer({
+              url: "./khung_kinh_6.geojson"
+            });
+            const khung_kinh_7 = new GeoJSONLayer({
+              url: "./khung_kinh_7.geojson"
+            });
+            const khung_kinh_8 = new GeoJSONLayer({
+              url: "./khung_kinh_8.geojson"
+            });
+            const khung_kinh_9 = new GeoJSONLayer({
+              url: "./khung_kinh_9.geojson"
+            });
+            const khung_kinh_10 = new GeoJSONLayer({
+              url: "./khung_kinh_10.geojson"
+            });
+
+            
+// in ra
+            nen.renderer = {
+                type: "simple",
+                symbol: {
+                    type: "polygon-3d",
+                    symbolLayers: [{
+                        type: "extrude",
+                        size: 10,
+                        material: {
+                            color: "gray"
+                        }
+                    }]
+                }
+            };
+            tang_1.renderer = {
+                type: "simple",
+                symbol: {
+                    type: "polygon-3d",
+                    symbolLayers: [{
+                        type: "extrude",
+                        size: 5,
+                        material: {
+                            color: "#CC6600"
+                        }
+                    }]
+                }
+            };
+            tang_2_truoc.renderer = {
+                type: "simple",
+                symbol: {
+                    type: "polygon-3d",
+                    symbolLayers: [{
+                        type: "extrude",
+                        size: 5,
+                        material: {
+                            color: "#FF6600"
+                        }
+                    }]
+                }
+            };
+            tang_2_sau.renderer = {
+                type: "simple",
+                symbol: {
+                    type: "polygon-3d",
+                    symbolLayers: [{
+                        type: "extrude",
+                        size: 2.5,
+                        material: {
+                            color: "#FF6600"
+                        }
+                    }]
+                }
+            };
+            logo.renderer = {
+                type: "simple",
+                symbol: {
+                    type: "polygon-3d",
+                    symbolLayers: [{
+                        type: "extrude",
+                        size: 10,
+                        material: {
+                            color: "#FFCC00"
+                        }
+                    }]
+                }
+            };
+            mai_che_1.renderer = {
+                type: "simple",
+                symbol: {
+                    type: "polygon-3d",
+                    symbolLayers: [{
+                        type: "extrude",
+                        size: 1,
+                        material: {
+                            color: "#CC6600"
+                        }
+                    }]
+                }
+            };
+            mai_che_2.renderer = {
+                type: "simple",
+                symbol: {
+                    type: "polygon-3d",
+                    symbolLayers: [{
+                        type: "extrude",
+                        size: 0.2,
+                        material: {
+                            color: "#555555"
+                        }
+                    }]
+                }
+            };
+            tuong_1.renderer = {
+                type: "simple",
+                symbol: {
+                    type: "polygon-3d",
+                    symbolLayers: [{
+                        type: "extrude",
+                        size: 2.5,
+                        material: {
+                            color: "#FF6600"
+                        }
+                    }]
+                }
+            };
+            tuong_2.renderer = {
+                type: "simple",
+                symbol: {
+                    type: "polygon-3d",
+                    symbolLayers: [{
+                        type: "extrude",
+                        size: 0.2,
+                        material: {
+                            color: "#FF6600"
+                        }
+                    }]
+                }
+            };
+            tuong_3.renderer = {
+                type: "simple",
+                symbol: {
+                    type: "polygon-3d",
+                    symbolLayers: [{
+                        type: "extrude",
+                        size: 2.5,
+                        material: {
+                            color: "#FF6600"
+                        }
+                    }]
+                }
+            };
+            tuong_4.renderer = {
+                type: "simple",
+                symbol: {
+                    type: "polygon-3d",
+                    symbolLayers: [{
+                        type: "extrude",
+                        size: 2.5,
+                        material: {
+                            color: "#FF6600"
+                        }
+                    }]
+                }
+            };
+            tuong_5.renderer = {
+                type: "simple",
+                symbol: {
+                    type: "polygon-3d",
+                    symbolLayers: [{
+                        type: "extrude",
+                        size: 2,
+                        material: {
+                            color: "#D3D3D3"
+                        }
+                    }]
+                }
+            };
+            tuong_6.renderer = {
+                type: "simple",
+                symbol: {
+                    type: "polygon-3d",
+                    symbolLayers: [{
+                        type: "extrude",
+                        size: 2.5,
+                        material: {
+                            color: "#FF6600"
+                        }
+                    }]
+                }
+            };
+            tuong_7.renderer = {
+                type: "simple",
+                symbol: {
+                    type: "polygon-3d",
+                    symbolLayers: [{
+                        type: "extrude",
+                        size: 5,
+                        material: {
+                            color: "#FFCC99"
+                        }
+                    }]
+                }
+            };
+            san_thuong_1.renderer = {
+                type: "simple",
+                symbol: {
+                    type: "polygon-3d",
+                    symbolLayers: [{
+                        type: "extrude",
+                        size: 0.1,
+                        material: {
+                            color: "#D3D3D3"
+                        }
+                    }]
+                }
+            };
+            san_thuong_2.renderer = {
+                type: "simple",
+                symbol: {
+                    type: "polygon-3d",
+                    symbolLayers: [{
+                        type: "extrude",
+                        size: 0.1,
+                        material: {
+                            color: "#D3D3D3"
+                        }
+                    }]
+                }
+            };
+            cot_1.renderer = {
+                type: "simple",
+                symbol: {
+                    type: "polygon-3d",
+                    symbolLayers: [{
+                        type: "extrude",
+                        size: 2.5,
+                        material: {
+                            color: "#CC6600"
+                        }
+                    }]
+                }
+            };
+            ten_1.renderer = {
+                type: "simple",
+                symbol: {
+                    type: "polygon-3d",
+                    symbolLayers: [{
+                        type: "extrude",
+                        size: 0.1,
+                        material: {
+                            color: "white"
+                        }
+                    }]
+                }
+            };
+            ten_2.renderer = {
+                type: "simple",
+                symbol: {
+                    type: "polygon-3d",
+                    symbolLayers: [{
+                        type: "extrude",
+                        size: 6,
+                        material: {
+                            color: "white"
+                        }
+                    }]
+                }
+            };
+            ten_3.renderer = {
+                type: "simple",
+                symbol: {
+                    type: "polygon-3d",
+                    symbolLayers: [{
+                        type: "extrude",
+                        size: 1,
+                        material: {
+                            color: "white"
+                        }
+                    }]
+                }
+            };
+            banner.renderer = {
+                type: "simple",
+                symbol: {
+                    type: "polygon-3d",
+                    symbolLayers: [{
+                        type: "extrude",
+                        size: 3,
+                        material: {
+                            color: "#008080",
+                        }
+                    }]
+                }
+            };
+            kinh_1.renderer = {
+                type: "simple",
+                symbol: {
+                    type: "polygon-3d",
+                    symbolLayers: [{
+                        type: "extrude",
+                        size: 10,
+                        material: {
+                            color: "#363636",
+                        }
+                    }]
+                }
+            };
+            kinh_2.renderer = {
+                type: "simple",
+                symbol: {
+                    type: "polygon-3d",
+                    symbolLayers: [{
+                        type: "extrude",
+                        size: 1,
+                        material: {
+                            color: "#363636",
+                        }
+                    }]
+                }
+            };
+            kinh_3.renderer = {
+                type: "simple",
+                symbol: {
+                    type: "polygon-3d",
+                    symbolLayers: [{
+                        type: "extrude",
+                        size: 5,
+                        material: {
+                            color: "#363636",
+                        }
+                    }]
+                }
+            };
+            kinh_4.renderer = {
+                type: "simple",
+                symbol: {
+                    type: "polygon-3d",
+                    symbolLayers: [{
+                        type: "extrude",
+                        size: 5,
+                        material: {
+                            color: "#1C1C1C",
+                        }
+                    }]
+                }
+            };
+            kinh_5.renderer = {
+                type: "simple",
+                symbol: {
+                    type: "polygon-3d",
+                    symbolLayers: [{
+                        type: "extrude",
+                        size: 5,
+                        material: {
+                            color: "#1C1C1C",
+                        }
+                    }]
+                }
+            };
+            khung_kinh_1.renderer = {
+                type: "simple",
+                symbol: {
+                    type: "polygon-3d",
+                    symbolLayers: [{
+                        type: "extrude",
+                        size: 10,
+                        material: {
+                            color: "white",
+                        }
+                    }]
+                }
+            };
+            khung_kinh_2.renderer = {
+                type: "simple",
+                symbol: {
+                    type: "polygon-3d",
+                    symbolLayers: [{
+                        type: "extrude",
+                        size: 0.1,
+                        material: {
+                            color: "white",
+                        }
+                    }]
+                }
+            };
+            khung_kinh_3.renderer = {
+                type: "simple",
+                symbol: {
+                    type: "polygon-3d",
+                    symbolLayers: [{
+                        type: "extrude",
+                        size: 0.1,
+                        material: {
+                            color: "white",
+                        }
+                    }]
+                }
+            };
+            khung_kinh_4.renderer = {
+                type: "simple",
+                symbol: {
+                    type: "polygon-3d",
+                    symbolLayers: [{
+                        type: "extrude",
+                        size: 1.2,
+                        material: {
+                            color: "white",
+                        }
+                    }]
+                }
+            };
+            khung_kinh_5.renderer = {
+                type: "simple",
+                symbol: {
+                    type: "polygon-3d",
+                    symbolLayers: [{
+                        type: "extrude",
+                        size: 5,
+                        material: {
+                            color: "white",
+                        }
+                    }]
+                }
+            };
+            khung_kinh_6.renderer = {
+                type: "simple",
+                symbol: {
+                    type: "polygon-3d",
+                    symbolLayers: [{
+                        type: "extrude",
+                        size: 0.1,
+                        material: {
+                            color: "white",
+                        }
+                    }]
+                }
+            };
+            khung_kinh_7.renderer = {
+                type: "simple",
+                symbol: {
+                    type: "polygon-3d",
+                    symbolLayers: [{
+                        type: "extrude",
+                        size: 5,
+                        material: {
+                            color: "white",
+                        }
+                    }]
+                }
+            };
+            khung_kinh_8.renderer = {
+                type: "simple",
+                symbol: {
+                    type: "polygon-3d",
+                    symbolLayers: [{
+                        type: "extrude",
+                        size: 0.1,
+                        material: {
+                            color: "white",
+                        }
+                    }]
+                }
+            };
+            khung_kinh_9.renderer = {
+                type: "simple",
+                symbol: {
+                    type: "polygon-3d",
+                    symbolLayers: [{
+                        type: "extrude",
+                        size: 5,
+                        material: {
+                            color: "white",
+                        }
+                    }]
+                }
+            };
+            khung_kinh_10.renderer = {
+                type: "simple",
+                symbol: {
+                    type: "polygon-3d",
+                    symbolLayers: [{
+                        type: "extrude",
+                        size: 0.1,
+                        material: {
+                            color: "white",
+                        }
+                    }]
+                }
+            };
+
+            const map = new Map({
+                basemap: "topo-vector",
+                ground: "world-elevation",
+                layers: [
+                  nen,
+                  tang_1,
+                  tang_2_truoc,
+                  tang_2_sau,
+                  logo,
+                  mai_che_1,
+                  mai_che_2,
+                  tuong_1,
+                  tuong_2,
+                  tuong_3,
+                  tuong_4,
+                  tuong_5,
+                  tuong_6,
+                  tuong_7,
+                  san_thuong_1,
+                  san_thuong_2,
+                  cot_1,
+                  ten_1,
+                  ten_2,
+                  ten_3,
+                  banner,
+                  kinh_1,
+                  kinh_2,
+                  kinh_3,
+                  kinh_4,
+                  kinh_5,
+                  khung_kinh_1,
+                  khung_kinh_2,
+                  khung_kinh_3,
+                  khung_kinh_4,
+                  khung_kinh_5,
+                  khung_kinh_6,
+                  khung_kinh_7,
+                  khung_kinh_8,
+                  khung_kinh_9,
+                  khung_kinh_10
+                ] //end layers
+            });
+
+
+            const view = new SceneView({
+                container: "viewDiv",
+                map: map,
+                center: [106.69322843396259, 10.823251186046804],
+                zoom: 19
+            });
+
+            view.popup.defaultPopupTemplateEnabled = true;
+        });
+    </script>
+</head>
+
+<body>
+    <div id="viewDiv"></div>
+</body>
+
+</html>
+js.arcgis.com
